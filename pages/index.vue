@@ -6,11 +6,12 @@
     <div class="content">
       <div>
         <h1 class="title">Choose your dream destination...</h1>
-        <div class="links">
-          <a href="#" class="giant-button"> San Francisco, USA </a>
-          <a href="#" class="giant-button"> Québec, Canada </a>
-          <a href="#" class="giant-button"> Bora Bora, Polynésie </a>
-          <a href="#" class="giant-button"> Torres del Paine, Chile </a>
+        <div
+          v-for="destination in destinations"
+          :key="destination.code"
+          class="links"
+        >
+          <Destination :name="destination.name" />
         </div>
       </div>
     </div>
@@ -18,7 +19,25 @@
 </template>
 
 <script>
-export default {}
+import Destination from '../components/Destination'
+export default {
+  name: 'HomePage',
+  components: {
+    Destination,
+  },
+  data() {
+    return {
+      // destinations: [],
+    }
+  },
+  computed: {
+    destinations: {
+      get() {
+        return this.getDestinations()
+      },
+    },
+  },
+}
 </script>
 
 <style lang="scss">
